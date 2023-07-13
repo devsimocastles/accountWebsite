@@ -2,8 +2,6 @@
     function error_li($error){
         echo "<li>$error</li>";
     }
-
-    session_start();
 ?>
 
 <?php include "./templates/header.php" ?>
@@ -23,12 +21,24 @@
     <ul class="error">
         <?php
             if ($_GET) {
-                $e = $_GET["error"];
-                if ($e == "empty") {
-                    error_li("Ningún campo puede estar vacío");
+                $e;
+                if (isset($_GET["error"])) {
+                    $e = $_GET["error"];
+                    if ($e == "empty") {
+                        error_li("Ningún campo puede estar vacío");
+                    }
+                    if ($e == "short_field") {
+                        error_li("Ambos campos deben tener al menos 8 carácteres de largo");
+                    }
+                    if ($e == "user_dont_exist") {
+                        error_li("El usuario ingresado no existe/está registrado");
+                    }
+                    if($e == "not_logged"){
+                        error_li("Debes iniciar sesión");
+                    }
                 }
-                if ($e == "short_field") {
-                    error_li("Ambos campos deben tener al menos 8 carácteres de largo");
+                if (isset($_GET["sesionCerrada"])) {
+                    error_li("Sesión cerrada satisfactoriamente");
                 }
             }
         ?>
