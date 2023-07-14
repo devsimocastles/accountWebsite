@@ -1,6 +1,6 @@
 <?php
 
 session_start();
-$_SESSION["logged"] = FALSE;
+unset($_SESSION["logged"], $_SESSION["user"], $_SESSION["pass"]);
 session_destroy();
 header("Location: login.php?sesionCerrada");

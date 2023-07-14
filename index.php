@@ -4,7 +4,6 @@
 ?>
     <?php 
         include "./templates/header.php";
-        echo $_SESSION["logged"];
     ?>
         <header>
             <nav>
@@ -14,7 +13,7 @@
                 </ul>
             </nav>
         </header>
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido, <?= $_SESSION["user"] ?></h1>
         <p>Puedes ver tu perfil <a href="profile.php">acá</a></p>
     <?php 
         include "./templates/footer.php";

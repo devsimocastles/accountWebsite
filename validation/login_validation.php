@@ -16,12 +16,7 @@ if (strlen($user) < 8 || strlen($pass) < 8) {
     header("Location: ../login.php?error=short_field");
 }
 
-$servername = "localhost";
-$username = "root";
-$bd_pass = "";
-$bd = "accountwebsite";
-
-$connection = new mysqli($servername, $username, $bd_pass, $bd);
+include "./bd/bd.php";
 
 if ($connection->connect_error) {
     header("Location: ../login.php?error=bd_connect");
@@ -29,7 +24,10 @@ if ($connection->connect_error) {
     $sql = "SELECT * FROM usuario WHERE usuario = '$user' AND pass = '$pass' LIMIT 1";
     $query = $connection->query($sql);
     if ($query->num_rows == 1) {
+        $data = $query->fetch_assoc();
+        $_SESSION["foto_perfil"] = $data["foto_perfil"];
         $_SESSION["logged"] = TRUE;
+        print_r($query->fetch_assoc());
         header("Location: ../index.php");
     } 
     else {

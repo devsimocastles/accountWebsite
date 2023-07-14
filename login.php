@@ -1,7 +1,5 @@
 <?php 
-    function error_li($error){
-        echo "<li>$error</li>";
-    }
+    include "./functions/error_li.php";
 ?>
 
 <?php include "./templates/header.php" ?>
