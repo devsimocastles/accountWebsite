@@ -16,7 +16,7 @@ if (strlen($user) < 8 || strlen($pass) < 8) {
     header("Location: ../login.php?error=short_field");
 }
 
-include "./bd/bd.php";
+include "../bd/bd.php";
 
 if ($connection->connect_error) {
     header("Location: ../login.php?error=bd_connect");
